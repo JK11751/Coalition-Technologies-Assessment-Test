@@ -1,0 +1,1 @@
+const BASIC_AUTH_CREDENTIALS = 'coalition:skills-test';

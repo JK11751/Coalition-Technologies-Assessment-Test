@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coalition Technologies Patient Data API</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+</head>
+
+<body>
+  <script src="config.js"></script>
+  <script src="index.js"></script>
+
+
+  <div class="navbar">
+    <div class="logo">
+      <img src="./images/TestLogo.png" alt="Logo" />
+    </div>
+    <div class="nav-links">
+      <a href="#overview"><img src="./images/home_FILL0_wght300_GRAD0_opsz24.png" alt="Overview" /> Overview</a>
+      <a href="#patients"><img src="./images/group_FILL0_wght300_GRAD0_opsz24.png" alt="Patients" /> Patients</a>
+      <a href="#schedule"><img src="./images/calendar_today_FILL0_wght300_GRAD0_opsz24.png" alt="Schedule" />
+        Schedule</a>
+      <a href="#message"><img src="./images/chat_bubble_FILL0_wght300_GRAD0_opsz24.png" alt="Message" /> Message</a>
+      <a href="#transactions"><img src="./images/credit_card_FILL0_wght300_GRAD0_opsz24.png"
+          alt="Transactions" />Transactions</a>
+    </div>
+    <div class="doctor-profile">
+      <img src="./images/senior-woman-doctor-and-portrait-smile-for-health-2023-11-27-05-18-16-utc.png" alt="User" />
+      <div class="doctor-name">
+        <h4>Dr. Jose Simmons</h4>
+        <p>General Practitioner</p>
+      </div>
+    </div>
+    <div class="doctor-account">
+      <img src="./images/settings_FILL0_wght300_GRAD0_opsz24.svg" />
+      <img src="./images/more_vert_FILL0_wght300_GRAD0_opsz24.svg" />
+    </div>
+
+    <!-- Modal -->
+    <div id="settings-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h4>My Account Settings</h4>
+        <p>Coming soon</p>
+        <!-- Add any other settings related content here -->
+      </div>
+    </div>
+
+  </div>
+  <div class="layout-container">
+    <div class="sidebar">
+      <div class="scrollable-container">
+        <div class="sidebaritem">
+        </div>
+      </div>
+    </div>
+    <div class="dash-layout">
+      <div class="dashboard">
+        <p class="diagnosis-history">Diagnosis History</p>
+        <div class="chart">
+          <div class="chart-text-layout">
+            <p class="blood-pressure-text">Blood Pressure</p>
+            <div class="period-select">
+              <select id="timePeriodSelect">
+                <option value="6">Last 6 months</option>
+                <option value="12">Last 1 year</option>
+                <option value="3">Last 3 months</option>
+                <option value="1">Last 1 month</option>
+              </select>
+            </div>
+          </div>
+          <canvas id="bloodPressureChart"></canvas>
+          
+
+        </div>
+        <div class="row">
+          <div class="diagnosis-card-1">
+            <div>
+              <img class="dashicon" src="./images/respiratory rate.png" alt="respiratory" />
+              <div class="dash-container">
+                <p class="rate">Respiratory Rate</p>
+                <p class="ratevalue" id="respiratory-rate-value">value</p>
+                <p class="ratelevel" id="respiratory-rate-level">level</p>
+                <span id="temperature-icon" class="arrow-icon"></span>
+              </div>
+            </div>
+          </div>
+          <div class="diagnosis-card-2">
+            <div>
+              <img class="dashicon" src="./images/temperature.png" alt="temperature" />
+              <div class="dash-container">
+                <p class="rate">Temperature</p>
+                <p class="ratevalue" id="temperature-value">value</p>
+                <p class="ratelevel" id="temperature-level">level</p>
+                <span id="temperature-icon" class="arrow-icon"></span>
+              </div>
+            </div>
+          </div>
+          <div class="diagnosis-card-3">
+            <div>
+              <img class="dashicon" src="./images/HeartBPM.png" alt="heart rate" />
+              <div class="dash-container">
+                <p class="rate">Heart Rate</p>
+                <p class="ratevalue" id="heart-rate-value">value</p>
+
+                <p class="ratelevel" id="heart-rate-level">level</p>
+                <span id="temperature-icon" class="arrow-icon"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="results-layout">
+        <div class="diagnostic-list-section">
+          <h4>Diagnostic List</h4>
+          <ul id="diagnostic-list">
+            <!-- Diagnostic List Items will be dynamically populated here -->
+          </ul>
+        </div>
+
+        <!-- New Lab Results Section -->
+        <div class="lab-results-section">
+          <h4>Lab Results</h4>
+          <ul id="lab-results-list">
+            <!-- Lab Results Items will be dynamically populated here -->
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="leftbar">
+      <div class="leftbarprofile">
+        <img id="profile-picture" src="" alt="Profile-Picture" />
+        <h4 id="patient-name">Patient_Name</4>
+      </div>
+      <div class="leftbardetails">
+        <div class="detail-item">
+          <img src="./images/BirthIcon.png" alt="icon" class="icon" />
+          <div class="text-layout">
+            <p class="ptext">Date of Birth</p>
+            <p id="date-of-birth" class="dtext"></p>
+          </div>
+        </div>
+        <div class="detail-item">
+          <img src="./images/FemaleIcon.png" alt="icon" class="icon" />
+          <div class="text-container">
+            <p class="ptext">Gender</p>
+            <p id="gender" class="dtext"></p>
+          </div>
+        </div>
+        <div class="detail-item">
+          <img src="./images/PhoneIcon.png" alt="icon" class="icon" />
+          <div class="text-layout">
+            <p class="ptext">Contact Info</p>
+            <p id="phone-number" class="dtext"></p>
+          </div>
+        </div>
+        <div class="detail-item">
+          <img src="./images/PhoneIcon.png" alt="icon" class="icon" />
+          <div class="text-layout">
+            <p class="ptext">Emergency Contacts</p>
+            <p id="emergency-contact" class="dtext"></p>
+          </div>
+        </div>
+        <div class="detail-item">
+          <img src="./images/InsuranceIcon.png" alt="icon" class="icon" />
+          <div class="text-layout">
+            <p class="ptext">Insurance Provider</p>
+            <p id="insurance-type" class="dtext"></p>
+          </div>
+        </div>
+        <button class="btn">Show All Information</button>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="modal.js"></script>
+</body>
+
+</html>
